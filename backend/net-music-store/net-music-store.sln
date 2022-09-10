@@ -3,12 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.API", "MusicStore.API\MusicStore.API.csproj", "{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.API", "MusicStore.API\MusicStore.API.csproj", "{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E88002A-3C6F-4610-9A39-FB2132887AFF}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Entities", "MusicStore.Entities\MusicStore.Entities.csproj", "{4EC68E3A-C645-4872-A63B-85A64CC0E215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.DataAccess", "MusicStore.DataAccess\MusicStore.DataAccess.csproj", "{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Services", "MusicStore.Services\MusicStore.Services.csproj", "{862BB7A8-FCD0-457F-9F19-046560F0BCD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Dto", "MusicStore.Dto\MusicStore.Dto.csproj", "{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Entidades", "01. Entidades", "{D5DAF038-84EB-4C62-9F89-A76F8D3842B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Acceso a Datos", "02. Acceso a Datos", "{DCEA24CF-F63B-4A06-BD0A-4B53817B599B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Logica de Negocio", "03. Logica de Negocio", "{B93B8D23-6D57-4C82-A8BD-30EB5292593E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. API REST", "04. API REST", "{81881407-A1FD-4D47-86D5-C86550C3A36D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +36,32 @@ Global
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D} = {81881407-A1FD-4D47-86D5-C86550C3A36D}
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215} = {D5DAF038-84EB-4C62-9F89-A76F8D3842B9}
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5} = {DCEA24CF-F63B-4A06-BD0A-4B53817B599B}
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9} = {B93B8D23-6D57-4C82-A8BD-30EB5292593E}
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C} = {B93B8D23-6D57-4C82-A8BD-30EB5292593E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB4313D3-D7E1-4224-8E4A-A7A81E4E10F5}
