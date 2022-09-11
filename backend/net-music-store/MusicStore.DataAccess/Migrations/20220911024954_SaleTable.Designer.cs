@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicStore.DataAccess;
 
@@ -11,9 +12,10 @@ using MusicStore.DataAccess;
 namespace MusicStore.DataAccess.Migrations
 {
     [DbContext(typeof(MusicStoreDbContext))]
-    partial class MusicStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220911024954_SaleTable")]
+    partial class SaleTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,26 +100,6 @@ namespace MusicStore.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genre");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Rock",
-                            Status = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Salsa",
-                            Status = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Reggeaton",
-                            Status = false
-                        });
                 });
 
             modelBuilder.Entity("MusicStore.Entities.Sale", b =>
