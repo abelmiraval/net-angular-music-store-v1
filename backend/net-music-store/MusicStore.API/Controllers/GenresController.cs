@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MusicStore.DataAccess;
 using MusicStore.Entities;
 
@@ -19,6 +20,7 @@ namespace MusicStore.API.Controllers
         public IActionResult Get()
         {
             return Ok(_context.Set<Genre>()
+                .IgnoreQueryFilters()
                 .Where(p => p.Description.StartsWith("R"))
                 .Select(p => new
                 {
