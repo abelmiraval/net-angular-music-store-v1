@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MusicStore.Entities;
 
 namespace MusicStore.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.DefaultRoute)]
     [ApiController]
-    public class ConcertController : ControllerBase
+    public class ConcertsController : ControllerBase
     {
 
         [HttpGet]
