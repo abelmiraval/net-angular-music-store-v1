@@ -2,10 +2,8 @@
 
 namespace MusicStore.Entities
 {
-    public class Concert
+    public class Concert : EntityBase
     {
-        public int Id { get; set; }
-
         [StringLength(100)]
         public string Title { get; set; }
         
@@ -29,6 +27,5 @@ namespace MusicStore.Entities
         
         public bool Finalized { get; set; }
         
-        public bool Status { get; set; }
     }
 }
