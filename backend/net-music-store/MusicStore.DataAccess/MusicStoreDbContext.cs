@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using MusicStore.Entities;
 
 namespace MusicStore.DataAccess
@@ -20,19 +21,16 @@ namespace MusicStore.DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Concert>()
-                .Property(e => e.UnitPrice)
-                .HasPrecision(5, 2);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.Entity<Concert>()
-                .Property(e => e.ImageUrl)
-                .HasMaxLength(500)
-                .IsUnicode(false);
+            modelBuilder.Entity<Genre>()
+                .HasData(new List<Genre>()
+                {
+                    new Genre { Id = 1, Description = "Rock"},
+                    new Genre { Id = 2, Description = "Salsa"},
+                    new Genre { Id = 3, Description = "Reggeaton"}
+                });
         }
-
-        public DbSet<Concert> Concerts { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-
 
     }
 }
