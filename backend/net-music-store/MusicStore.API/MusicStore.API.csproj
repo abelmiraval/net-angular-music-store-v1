@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicStore.DataAccess\MusicStore.DataAccess.csproj" />
+    <ProjectReference Include="..\MusicStore.Dto\MusicStore.Dto.csproj" />
     <ProjectReference Include="..\MusicStore.Entities\MusicStore.Entities.csproj" />
   </ItemGroup>
 
