@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MusicStore.DataAccess;
 using MusicStore.Dto;
+using MusicStore.Dto.Request;
 using MusicStore.Entities;
 
 namespace MusicStore.API.Controllers
@@ -50,12 +51,17 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Genre genre)
+        public async Task<IActionResult> Post(DtoGenre request)
         {
             var response = new BaseResponse.BaseResponseGeneric<int>();
 
             try
             {
+                var genre = new Genre
+                {
+                    Description = request.Description ?? string.Empty
+                };
+
                 await _context.Set<Genre>().AddAsync(genre);
                 await _context.SaveChangesAsync();
 
@@ -70,5 +76,61 @@ namespace MusicStore.API.Controllers
 
             return Ok(response);
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Put(int id, DtoGenre request)
+        {
+            var response = new BaseResponse();
+
+            try
+            {
+                var entity = await _context.Set<Genre>()
+                    .AsTracking()
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+                if (entity != null)
+                {
+                    entity.Description = request.Description ?? string.Empty;
+                    await _context.SaveChangesAsync();
+                    response.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.ListErrors.Add(ex.Message);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var response = new BaseResponse();
+
+            try
+            {
+                var entity = await _context.Set<Genre>()
+                    .AsTracking()
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+                if (entity != null)
+                {
+                    entity.Status = false;
+                    await _context.SaveChangesAsync();
+                    response.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.ListErrors.Add(ex.Message);
+            }
+
+            return Ok(response);
+        }
+
     }
 }
