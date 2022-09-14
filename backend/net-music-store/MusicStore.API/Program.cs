@@ -7,6 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MusicStoreDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"));
+    // Mostrar el detalle de EF Core
+    //options.LogTo(Console.WriteLine, LogLevel.Trace);
+    
+    // SOLO Habilitar en modo Desarrollo
+    options.EnableSensitiveDataLogging();
+   
+    // Utiliza el AsNoTracking por default en todos los querys de Seleccion
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

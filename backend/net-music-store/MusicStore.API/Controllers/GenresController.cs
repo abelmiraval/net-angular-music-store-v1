@@ -16,18 +16,31 @@ namespace MusicStore.API.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet()]
+        public async Task<IActionResult> Get(string? filter)
         {
-            return Ok(_context.Set<Genre>()
-                .IgnoreQueryFilters()
-                .Where(p => p.Description.StartsWith("R"))
+         return Ok(await _context.Set<Genre>()
+                // .IgnoreQueryFilters()  //IGNORAR LOS QUERY FILTERS
+                // .AsNoTracking()  //NO UTILIZAR EL CACHE
+                .Where(p => p.Description.StartsWith(filter ?? string.Empty))
                 .Select(p => new
                 {
                     p.Id,
                     p.Description
                 })
-                .ToList());
+                .ToListAsync());
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var genre = await _context.Set<Genre>()
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (genre == null)
+                return NotFound();
+
+            return Ok(genre);
         }
     }
 }
