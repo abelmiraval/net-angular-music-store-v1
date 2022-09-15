@@ -1,18 +1,19 @@
-﻿namespace MusicStore.Dto;
-
-public class BaseResponse
+﻿namespace MusicStore.Dto
 {
-    public bool Success { get; set; }
-    public ICollection<string> ListErrors { get; set; }
-
-    public BaseResponse()
+    public class BaseResponse
     {
-        ListErrors = new List<string>();
+        public bool Success { get; set; }
+        public ICollection<string> ListErrors { get; set; }
+
+        public BaseResponse()
+        {
+            ListErrors = new List<string>();
+        }
     }
 
     public class BaseResponseGeneric<TClass> : BaseResponse
     {
         public TClass ResponseResult { get; set; }
-        
+
     }
 }

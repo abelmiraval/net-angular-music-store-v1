@@ -18,25 +18,28 @@ namespace MusicStore.API.Controllers
             _context = context;
         }
 
-        [HttpGet()]
+        [HttpGet]
+        [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 200)]
         public async Task<IActionResult> Get(string? filter)
         {
-         return Ok(await _context.Set<Genre>()
-                // .IgnoreQueryFilters()  //IGNORAR LOS QUERY FILTERS
-                // .AsNoTracking()  //NO UTILIZAR EL CACHE
-                .Where(p => p.Description.StartsWith(filter ?? string.Empty))
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Description
-                })
-                .ToListAsync());
+            return Ok(await _context.Set<Genre>()
+                   // .IgnoreQueryFilters()  //IGNORAR LOS QUERY FILTERS
+                   // .AsNoTracking()  //NO UTILIZAR EL CACHE
+                   .Where(p => p.Description.StartsWith(filter ?? string.Empty))
+                   .Select(p => new
+                   {
+                       p.Id,
+                       p.Description
+                   })
+                   .ToListAsync());
         }
 
         [HttpGet("{id:int}")]
+        [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 200)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 404)]
         public async Task<IActionResult> Get(int id)
         {
-            var response = new BaseResponse.BaseResponseGeneric<Genre>();
+            var response = new BaseResponseGeneric<Genre>();
 
             var genre = await _context.Set<Genre>()
                 .FirstOrDefaultAsync(p => p.Id == id);
@@ -51,9 +54,11 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 201)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
         public async Task<IActionResult> Post(DtoGenre request)
         {
-            var response = new BaseResponse.BaseResponseGeneric<int>();
+            var response = new BaseResponseGeneric<int>();
 
             try
             {
@@ -74,10 +79,12 @@ namespace MusicStore.API.Controllers
                 response.ListErrors.Add(ex.Message);
             }
 
-            return Ok(response);
+            return Created($"api/Genres/{response.ResponseResult}", response);
         }
 
         [HttpPut("{id:int}")]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 200)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
         public async Task<IActionResult> Put(int id, DtoGenre request)
         {
             var response = new BaseResponse();
@@ -105,6 +112,8 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 200)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
         public async Task<IActionResult> Delete(int id)
         {
 
