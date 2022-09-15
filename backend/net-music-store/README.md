@@ -63,3 +63,11 @@ dotnet ef migrations add Init-Migration --project .\MusicStore.DataAccess\ --sta
 ```
 dotnet ef database update --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\
 ```
+
+## Extensions
+
+- Auto-Using for C#
+- C#
+- C# Extensions
+- C# Snippets
+- SQL Server (mssql)
