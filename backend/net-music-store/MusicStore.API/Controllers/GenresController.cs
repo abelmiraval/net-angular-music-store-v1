@@ -22,7 +22,9 @@ namespace MusicStore.API.Controllers
         [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 200)]
         public async Task<IActionResult> Get(string? filter)
         {
-            return Ok(await _context.Set<Genre>()
+            //var response = new BaseResponseGeneric<ICollection<>>();
+
+            var list = await _context.Set<Genre>()
                    // .IgnoreQueryFilters()  //IGNORAR LOS QUERY FILTERS
                    // .AsNoTracking()  //NO UTILIZAR EL CACHE
                    .Where(p => p.Description.StartsWith(filter ?? string.Empty))
@@ -31,7 +33,9 @@ namespace MusicStore.API.Controllers
                        p.Id,
                        p.Description
                    })
-                   .ToListAsync());
+                   .ToListAsync();
+
+            return Ok(list);
         }
 
         [HttpGet("{id:int}")]
@@ -116,7 +120,6 @@ namespace MusicStore.API.Controllers
         [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
         public async Task<IActionResult> Delete(int id)
         {
-
             var response = new BaseResponse();
 
             try

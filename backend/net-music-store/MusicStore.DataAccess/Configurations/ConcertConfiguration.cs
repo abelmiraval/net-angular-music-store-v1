@@ -24,6 +24,8 @@ namespace MusicStore.DataAccess.Configurations
 
             builder.Property(p => p.Status)
                 .HasDefaultValue(true);
+
+            builder.HasQueryFilter(p => p.Status);
         }
     }
 }
