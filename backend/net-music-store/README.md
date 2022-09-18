@@ -13,14 +13,37 @@ dotnet new sln -o MusicStore
 - Move project to solution
 ```
 mv .\MusicStore.API\ .\MusicStore\
-
+```
+```
 dotnet sln add .\MusicStore.API\
-
 ```
 
 - Run solution
 ```
 dotnet run --project .\MusicStore.API\
+```
+
+- Run solution with watch
+```
+dotnet watch run --project .\MusicStore.API\
+```
+
+- Add dependency .NET CLI
+```
+cd .\MusicStore.API\
+```
+```
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection --version 11.0.0
+```
+
+- Add dependency PackageReference, paste in MusicStore.API.csproj
+```
+<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+```
+
+- Restore package, in the root directory
+```
+dotnet restore
 ```
 
 ## Package Manager Console
@@ -33,7 +56,8 @@ add-migration Initial-Migration
 - Remove migration
 ```
 remove-migration
-
+```
+```
 remove-migration -force
 ```
 
