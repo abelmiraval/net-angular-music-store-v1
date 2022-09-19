@@ -33,6 +33,9 @@ public class AutoMapperProfile : Profile
             .ForMember(dto => dto.GenreId, ent => ent.MapFrom(x => x.GenreId))
             .ReverseMap();
 
+        CreateMap<Genre, DtoResponseGenre>();
+
+        CreateMap<DtoGenre, Genre>();
 
     }
 
