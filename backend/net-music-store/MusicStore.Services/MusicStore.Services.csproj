@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MusicStore.DataAccess\MusicStore.DataAccess.csproj" />
+    <ProjectReference Include="..\MusicStore.Dto\MusicStore.Dto.csproj" />
+  </ItemGroup>
+
 </Project>
