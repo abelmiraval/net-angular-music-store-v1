@@ -88,6 +88,11 @@ dotnet ef migrations add Init-Migration --project .\MusicStore.DataAccess\ --sta
 dotnet ef database update --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\
 ```
 
+- Add reference, in the class library 
+```
+dotnet add reference ..\MusicStore.Dto\
+```
+
 ## Extensions
 
 - Auto-Using for C#
