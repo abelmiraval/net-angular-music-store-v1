@@ -1,13 +1,10 @@
 ﻿
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
 using MusicStore.DataAccess.Repositories;
-using MusicStore.Dto;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
 using MusicStore.Entities;
-using MusicStore.Services.Intefaces;
+using MusicStore.Services.Interfaces;
 
 namespace MusicStore.Services.Implementations
 {
@@ -27,7 +24,7 @@ namespace MusicStore.Services.Implementations
             var response = new BaseResponseGeneric<ICollection<DtoResponseGenre>>();
             try
             {
-                var collection = _repository.ListAsync(filter);
+                var collection = await _repository.ListAsync(filter);
 
                 response.ResponseResult =  _mapper.Map<ICollection<DtoResponseGenre>>(collection);
                 response.Success = true;

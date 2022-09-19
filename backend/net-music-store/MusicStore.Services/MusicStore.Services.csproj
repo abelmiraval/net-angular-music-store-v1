@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\MusicStore.Dto\MusicStore.Dto.csproj" />
+    <ProjectReference Include="..\MusicStore.DataAccess\MusicStore.DataAccess.csproj" />
+  </ItemGroup>
+
+ <ItemGroup>
+  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+ </ItemGroup> 
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-	</ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MusicStore.DataAccess\MusicStore.DataAccess.csproj" />
-    <ProjectReference Include="..\MusicStore.Dto\MusicStore.Dto.csproj" />
-  </ItemGroup>
 
 </Project>

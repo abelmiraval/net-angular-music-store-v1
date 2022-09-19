@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MusicStore.DataAccess;
-using MusicStore.Dto;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
 using MusicStore.Entities;
-using MusicStore.Services.Intefaces;
+using MusicStore.Services.Interfaces;
 
 namespace MusicStore.API.Controllers
 {
@@ -51,8 +48,8 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpPut("{id:int}")]
-        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 200)]
-        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
+        [ProducesResponseType(typeof(BaseResponse), 200)]
+        [ProducesResponseType(typeof(BaseResponse), 400)]
         public async Task<IActionResult> Put(int id, DtoGenre request)
         {
             var response = await _service.UpdateAsync(id, request);
@@ -61,8 +58,8 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 200)]
-        [ProducesResponseType(typeof(BaseResponseGeneric<int>), 400)]
+        [ProducesResponseType(typeof(BaseResponse), 200)]
+        [ProducesResponseType(typeof(BaseResponse), 400)]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _service.DeleteAsync(id);

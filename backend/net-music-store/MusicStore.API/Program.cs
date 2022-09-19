@@ -4,7 +4,7 @@ using MusicStore.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(options => options.AddProfile<AutoMapperProfile>());
+builder.Services.AddAutoMapper(options => options.AddProfile<AutoMapperProfiles>());
 
 // Add services to the container.
 builder.Services.AddDbContext<MusicStoreDbContext>(options =>

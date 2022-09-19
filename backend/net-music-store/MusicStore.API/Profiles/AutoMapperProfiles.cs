@@ -5,16 +5,16 @@ using MusicStore.Entities;
 
 namespace MusicStore.API.Profiles;
 
-public class AutoMapperProfile : Profile
+public class AutoMapperProfiles : Profile
 {
-    public AutoMapperProfile()
+    public AutoMapperProfiles()
     {
         CreateMap<Concert, DtoResponseConcert>()
             .ForMember(dto => dto.Id, ent => ent.MapFrom(x => x.Id))
             .ForMember(dto => dto.Title, ent => ent.MapFrom(x => x.Title))
             .ForMember(dto => dto.Description, ent => ent.MapFrom(x => x.Description))
             .ForMember(dto => dto.DateEvent, ent => ent.MapFrom(x => x.DateEvent.ToString("yyyy-MM-dd")))
-            .ForMember(dto => dto.TimeEvent, ent => ent.MapFrom(x => x.DateEvent.ToString("HH::mm:ss")))
+            .ForMember(dto => dto.TimeEvent, ent => ent.MapFrom(x => x.DateEvent.ToString("HH:mm:ss")))
             .ForMember(dto => dto.TicketsQuantity, ent => ent.MapFrom(x => x.TicketsQuantity))
             .ForMember(dto => dto.UnitPrice, ent => ent.MapFrom(x => x.UnitPrice))
             .ForMember(dto => dto.Place, ent => ent.MapFrom(x => x.Place))

@@ -1,8 +1,7 @@
-﻿using MusicStore.Dto;
-using MusicStore.Dto.Request;
+﻿using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
 
-namespace MusicStore.Services.Intefaces;
+namespace MusicStore.Services.Interfaces;
 
 public interface IGenreService
 {

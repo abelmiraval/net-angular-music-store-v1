@@ -1,4 +1,4 @@
-﻿namespace MusicStore.Dto
+﻿namespace MusicStore.Dto.Response
 {
     public class BaseResponse
     {
