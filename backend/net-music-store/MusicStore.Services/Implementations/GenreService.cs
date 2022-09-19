@@ -38,7 +38,7 @@ namespace MusicStore.Services.Implementations
             return response;
         }
 
-        public async Task<BaseResponseGeneric<DtoResponseGenre?>> GetByIdAsync(int id)
+        public async Task<BaseResponseGeneric<DtoResponseGenre>> GetByIdAsync(int id)
         {
             var response = new BaseResponseGeneric<DtoResponseGenre>();
             try
