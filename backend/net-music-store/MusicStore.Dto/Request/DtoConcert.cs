@@ -22,5 +22,4 @@ public class DtoConcert
     public string? ImageUrl { get; set; }
     public string? Place { get; set; }
     public int GenreId { get; set; }
-    public bool Finalized { get; set; }
 }

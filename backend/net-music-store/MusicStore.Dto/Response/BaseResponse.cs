@@ -16,4 +16,9 @@
         public TClass ResponseResult { get; set; }
 
     }
+
+    public class BaseCollectionResponse<TClass> : BaseResponseGeneric<TClass>
+    {
+        public int TotalPages { get; set; }
+    }
 }

@@ -12,7 +12,7 @@ namespace MusicStore.DataAccess
         }
 
         public MusicStoreDbContext(DbContextOptions<MusicStoreDbContext> options)
-            :base(options)
+            : base(options)
         {
 
         }
@@ -24,13 +24,14 @@ namespace MusicStore.DataAccess
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             modelBuilder.Entity<Genre>()
-                .HasData(new List<Genre>()
+                .HasData(new List<Genre>
                 {
                     new Genre { Id = 1, Description = "Rock"},
                     new Genre { Id = 2, Description = "Salsa"},
-                    new Genre { Id = 3, Description = "Reggeaton"}
+                    new Genre { Id = 3, Description = "Reggeaton"},
                 });
-        }
 
+        }
+     
     }
 }
