@@ -20,7 +20,25 @@ public class ConcertRepository : IConcertRepository
 
     public async Task<(ICollection<ConcertInfo> Collection, int Total)> GetCollectionAsync(string? filter, int page, int rows, bool home = true)
     {
-        throw new NotImplementedException();
+        Expression<Func<Concert, bool>> expression = p => p.Title.Contains(filter ?? string.Empty);
+
+        var query = _context.Set<Concert>()
+            .Include(p => p.Genre)
+            .Where(expression)
+            .Skip((page - 1) * rows)
+            .Take(rows);
+
+        query = home ? query.OrderBy(p => p.DateEvent) : query.OrderByDescending(p => p.Id);
+
+        var totalCount = await _context.Set<Concert>()
+            .Where(expression)
+            .CountAsync();
+
+        var collection = await query
+            .Select(x => _mapper.Map<ConcertInfo>(x))
+            .ToListAsync();
+
+        return (collection, totalCount);
     }
 
     public async Task<ICollection<ConcertInfo>> GetCollectionByGenre(int id)

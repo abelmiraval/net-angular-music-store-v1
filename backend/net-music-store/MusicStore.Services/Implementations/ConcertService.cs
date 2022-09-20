@@ -25,8 +25,26 @@ public class ConcertService : IConcertService
     public async Task<BaseCollectionResponse<ICollection<ConcertInfo>>> GetAsync(string? filter, int page, int rows,
         bool fromHome = true)
     {
+        var response = new BaseCollectionResponse<ICollection<ConcertInfo>>();
+        try
+        {
+            var tuple = await _repository.GetCollectionAsync(filter, page, rows, fromHome);
+            response.ResponseResult = tuple.Collection.ToList();
+            var totalPages = tuple.Total / rows;
+            if (tuple.Total % rows > 0)
+                totalPages++;
 
-        throw new NotImplementedException();
+            response.TotalPages = totalPages;
+            response.Success = true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogCritical(ex.StackTrace);
+            response.Success = false;
+            response.ListErrors.Add(ex.Message);
+        }
+
+        return response;
     }
 
     public async Task<BaseResponseGeneric<ICollection<ConcertInfo>>> GetByGenreAsync(int genreId)
