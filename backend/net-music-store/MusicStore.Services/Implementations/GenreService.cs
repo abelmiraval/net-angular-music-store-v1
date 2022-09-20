@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using MusicStore.DataAccess.Repositories;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
@@ -10,6 +9,7 @@ namespace MusicStore.Services.Implementations
 {
     public class GenreService : IGenreService
     {
+
         private readonly IGenreRepository _repository;
         private readonly IMapper _mapper;
 
@@ -54,7 +54,6 @@ namespace MusicStore.Services.Implementations
                 response.ListErrors.Add(ex.Message);
             }
 
-
             return response;
         }
 
@@ -69,20 +68,28 @@ namespace MusicStore.Services.Implementations
             catch (Exception ex)
             {
                 response.Success = false;
-                response.ListErrors.Add(ex.Message);
+                response.ListErrors.Add(ex.Message);    
             }
-
             return response;
         }
 
         public async Task<BaseResponse> UpdateAsync(int id, DtoGenre request)
         {
             var response = new BaseResponse();
+
             try
             {
-                var entity = _mapper.Map<Genre>(request);
-                entity.Id = id;
-                await _repository.UpdateAsync(entity);
+                var genre = await _repository.GetByIdAsync(id);
+
+                if (genre == null)
+                {
+                    response.Success = false;
+                    return response;
+                }
+
+                _mapper.Map(request, genre);
+
+                await _repository.UpdateAsync();
 
                 response.Success = true;
             }
