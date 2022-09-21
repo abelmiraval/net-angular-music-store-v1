@@ -15,6 +15,8 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddDependencies(this IServiceCollection services)
     {
+        services.AddTransient<IFileUploader, FileUploader>();
+
         services.AddTransient<IGenreRepository, GenreRepository>()
             .AddTransient<IGenreService, GenreService>();
 

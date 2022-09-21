@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using MusicStore.API.Profiles;
 using MusicStore.DataAccess;
+using MusicStore.Entities.Configurations;
 using MusicStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.AddAutoMapper(options => options.AddProfile<AutoMapperProfiles>());
 builder.Services.AddDependencies();

@@ -30,7 +30,6 @@ public class AutoMapperProfiles : Profile
             .ForMember(dto => dto.TicketsQuantity, ent => ent.MapFrom(x => x.TicketsQuantity))
             .ForMember(dto => dto.UnitPrice, ent => ent.MapFrom(x => x.UnitPrice))
             .ForMember(dto => dto.Place, ent => ent.MapFrom(x => x.Place))
-            .ForMember(dto => dto.ImageUrl, ent => ent.MapFrom(x => x.ImageUrl))
             .ForMember(dto => dto.GenreId, ent => ent.MapFrom(x => x.GenreId))
             .ReverseMap();
 
