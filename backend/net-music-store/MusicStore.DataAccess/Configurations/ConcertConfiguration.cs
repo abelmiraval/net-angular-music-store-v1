@@ -10,7 +10,7 @@ public class ConcertConfiguration : IEntityTypeConfiguration<Concert>
     {
         builder
             .Property(e => e.UnitPrice)
-            .HasPrecision(5, 2);
+            .HasPrecision(10, 2);
 
         builder
             .Property(e => e.ImageUrl)
