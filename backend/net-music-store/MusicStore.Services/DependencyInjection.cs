@@ -23,6 +23,9 @@ public static class DependencyInjection
         services.AddTransient<IConcertRepository, ConcertRepository>()
             .AddTransient<IConcertService, ConcertService>();
 
+        services.AddTransient<ISaleRepository, SaleRepository>()
+            .AddTransient<ISaleService, SaleService>();
+
         return services;
     }
 }
