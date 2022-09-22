@@ -17,10 +17,10 @@ namespace MusicStore.DataAccess.Configurations
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Property(p => p.UnitPrice)
-                .HasPrecision(5, 2);
+                .HasPrecision(10, 2);
 
             builder.Property(p => p.TotalSale)
-                .HasPrecision(5, 2);
+                .HasPrecision(10, 2);
 
             builder.Property(p => p.UserId)
                 .HasMaxLength(36)
