@@ -6,7 +6,7 @@ namespace MusicStore.Services.Interfaces;
 
 public interface ISaleService
 {
-    Task<BaseResponseGeneric<int>> CreateAsync(DtoSale entity);
+    Task<BaseResponseGeneric<int>> CreateAsync(DtoSale entity, string userId);
 
     Task<BaseResponseGeneric<DtoSaleInfo>> GetSaleById(int id);
 

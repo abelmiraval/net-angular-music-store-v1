@@ -23,7 +23,7 @@ public class SaleService : ISaleService
         _logger = logger;
     }
 
-    public async Task<BaseResponseGeneric<int>> CreateAsync(DtoSale request)
+    public async Task<BaseResponseGeneric<int>> CreateAsync(DtoSale request, string userId)
     {
         var response = new BaseResponseGeneric<int>();
         try
@@ -31,7 +31,7 @@ public class SaleService : ISaleService
             var sale = _mapper.Map<Sale>(request);
             sale.SaleDate = DateTime.Now;
             sale.TotalSale = request.Quantity * request.UnitPrice;
-            sale.UserId = Guid.NewGuid().ToString();
+            sale.UserId = userId;
 
             response.ResponseResult = await _repository.CreateAsync(sale);
             response.Success = true;

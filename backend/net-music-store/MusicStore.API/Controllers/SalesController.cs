@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
@@ -10,6 +11,7 @@ namespace MusicStore.API.Controllers;
 
 [ApiController]
 [Route($"{Constants.DefaultRoute}/[action]")]
+[Authorize]
 public class SalesController : ControllerBase
 {
     private readonly ISaleService _service;
@@ -45,7 +47,10 @@ public class SalesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(DtoSale request)
     {
-        return Ok(await _service.CreateAsync(request));
-    }
+        var userId = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Sid);
 
+        if (userId == null) return Unauthorized();
+
+        return Ok(await _service.CreateAsync(request, userId.Value));
+    }
 }
