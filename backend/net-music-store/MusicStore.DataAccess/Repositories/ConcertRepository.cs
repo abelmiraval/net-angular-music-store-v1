@@ -1,5 +1,4 @@
-﻿
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MusicStore.Entities;
@@ -39,6 +38,7 @@ public class ConcertRepository : IConcertRepository
             .ToListAsync();
 
         return (collection, totalCount);
+
     }
 
     public async Task<ICollection<ConcertInfo>> GetCollectionByGenre(int id)

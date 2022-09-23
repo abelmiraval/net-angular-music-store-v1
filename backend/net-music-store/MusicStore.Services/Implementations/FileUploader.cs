@@ -24,24 +24,23 @@ public class FileUploader : IFileUploader
 
             var bytes = Convert.FromBase64String(base64String);
 
-            // C:\\Servidor\Pictures\concierto01.jpg
+            // C:\Servidor\Pictures\concierto01.jpg
             var path = Path.Combine(_options.Value.StorageConfiguration.Path, filePath);
 
             await using (var fileStream = new FileStream(path, FileMode.Create))
             {
                 await fileStream.WriteAsync(bytes, 0, bytes.Length);
             }
-        
-            //http://localhost/pictures/concierto01.jpg
+
+            // http://localhost/pictures/concierto01.jpg
 
             return $"{_options.Value.StorageConfiguration.PublicUrl}{filePath}";
-
         }
         catch (Exception ex)
         {
-          _logger.LogError(ex.Message);
+            _logger.LogError(ex.Message);
 
-          return string.Empty;
+            return string.Empty;
         }
     }
 }

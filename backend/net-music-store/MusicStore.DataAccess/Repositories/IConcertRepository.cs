@@ -1,14 +1,11 @@
-﻿
-
-using MusicStore.Entities;
+﻿using MusicStore.Entities;
 using MusicStore.Entities.Complex;
 
 namespace MusicStore.DataAccess.Repositories;
 
 public interface IConcertRepository
 {
-    Task<(ICollection<ConcertInfo> Collection, int Total)> GetCollectionAsync(string? filter, int page, int rows,
-        bool home = true);
+    Task<(ICollection<ConcertInfo> Collection, int Total)> GetCollectionAsync(string? filter, int page, int rows, bool home = true);
 
     Task<ICollection<ConcertInfo>> GetCollectionByGenre(int id);
 
@@ -23,5 +20,4 @@ public interface IConcertRepository
     Task Finalize(int id);
 
     Task DeleteAsync(int id);
-
 }

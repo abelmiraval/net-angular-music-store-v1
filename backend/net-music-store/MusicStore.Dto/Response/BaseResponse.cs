@@ -3,6 +3,7 @@
     public class BaseResponse
     {
         public bool Success { get; set; }
+
         public ICollection<string> ListErrors { get; set; }
 
         public BaseResponse()

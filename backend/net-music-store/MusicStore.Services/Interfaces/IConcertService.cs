@@ -7,8 +7,7 @@ namespace MusicStore.Services.Interfaces;
 
 public interface IConcertService
 {
-    Task<BaseCollectionResponse<ICollection<ConcertInfo>>> GetAsync(string? filter, int page, int rows,
-        bool fromHome = true);
+    Task<BaseCollectionResponse<ICollection<ConcertInfo>>> GetAsync(string? filter, int page, int rows, bool fromHome = true);
 
     Task<BaseResponseGeneric<ICollection<ConcertInfo>>> GetByGenreAsync(int genreId);
 

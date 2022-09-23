@@ -16,7 +16,9 @@ public class ConcertService : IConcertService
     private readonly IFileUploader _fileUploader;
     private readonly ILogger<ConcertService> _logger;
 
-    public ConcertService(IConcertRepository repository, IMapper mapper, IFileUploader fileUploader, ILogger<ConcertService> logger)
+    public ConcertService(IConcertRepository repository, IMapper mapper, 
+        IFileUploader fileUploader,
+        ILogger<ConcertService> logger)
     {
         _repository = repository;
         _mapper = mapper;
@@ -24,15 +26,16 @@ public class ConcertService : IConcertService
         _logger = logger;
     }
 
-    public async Task<BaseCollectionResponse<ICollection<ConcertInfo>>> GetAsync(string? filter, int page, int rows,
-        bool fromHome = true)
+    public async Task<BaseCollectionResponse<ICollection<ConcertInfo>>> GetAsync(string? filter, int page, int rows, bool fromHome = true)
     {
         var response = new BaseCollectionResponse<ICollection<ConcertInfo>>();
+
         try
         {
             var tuple = await _repository.GetCollectionAsync(filter, page, rows, fromHome);
             response.ResponseResult = tuple.Collection.ToList();
             var totalPages = tuple.Total / rows;
+            // residuo de la division
             if (tuple.Total % rows > 0)
                 totalPages++;
 
@@ -110,9 +113,9 @@ public class ConcertService : IConcertService
         {
             var concert = _mapper.Map<Concert>(request);
 
-            if (!string.IsNullOrEmpty(request.Filename))
+            if (!string.IsNullOrEmpty(request.FileName))
             {
-                concert.ImageUrl = await _fileUploader.UploadFileAsync(request.ImageBase64, request.Filename);
+                concert.ImageUrl = await _fileUploader.UploadFileAsync(request.ImageBase64, request.FileName);
             }
 
             response.ResponseResult = await _repository.CreateAsync(concert);
@@ -164,9 +167,9 @@ public class ConcertService : IConcertService
 
             _mapper.Map(request, concert);
 
-            if (!string.IsNullOrEmpty(request.Filename))
+            if (!string.IsNullOrEmpty(request.FileName))
             {
-                concert.ImageUrl = await _fileUploader.UploadFileAsync(request.ImageBase64, request.Filename);
+                concert.ImageUrl = await _fileUploader.UploadFileAsync(request.ImageBase64, request.FileName);
             }
 
             await _repository.UpdateAsync();
