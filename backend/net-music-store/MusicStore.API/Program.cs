@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MusicStore.API.Profiles;
 using MusicStore.DataAccess;
@@ -15,15 +16,29 @@ builder.Services.AddDependencies();
 builder.Services.AddDbContext<MusicStoreDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"));
-    // Mostrar el detalle de EF Core
+    // Mostrar el detalle del EF Core.
     //options.LogTo(Console.WriteLine, LogLevel.Trace);
 
     // SOLO Habilitar en modo Desarrollo
     options.EnableSensitiveDataLogging();
 
     // Utiliza el AsNoTracking por default en todos los querys de Seleccion
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
+
+builder.Services.AddIdentity<MusicStoreUserIdentity, IdentityRole>(setup =>
+{
+    setup.Password.RequireNonAlphanumeric = false;
+    setup.Password.RequiredUniqueChars = 0;
+    setup.Password.RequireUppercase = false;
+    setup.Password.RequireLowercase = false;
+    setup.Password.RequireDigit = false;
+    setup.Password.RequiredLength = 8;
+
+    setup.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<MusicStoreDbContext>()
+    .AddDefaultTokenProviders();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

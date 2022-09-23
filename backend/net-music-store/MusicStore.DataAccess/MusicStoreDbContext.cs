@@ -1,10 +1,11 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MusicStore.Entities;
 
 namespace MusicStore.DataAccess
 {
-    public class MusicStoreDbContext : DbContext
+    public class MusicStoreDbContext : IdentityDbContext<MusicStoreUserIdentity>
     {
         public MusicStoreDbContext()
         {
