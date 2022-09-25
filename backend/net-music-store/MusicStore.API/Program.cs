@@ -8,6 +8,8 @@ using MusicStore.Entities.Configurations;
 using MusicStore.Services;
 using System.Text;
 using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,11 @@ var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes
+    .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"), new MSSqlServerSinkOptions
+    {
+        AutoCreateSqlTable = true,
+        TableName = "ApiLogs"
+    }, restrictedToMinimumLevel: LogEventLevel.Warning)
     .CreateLogger();
 
 builder.Host.ConfigureLogging(options =>
