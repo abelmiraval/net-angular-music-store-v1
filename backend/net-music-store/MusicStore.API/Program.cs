@@ -7,8 +7,31 @@ using MusicStore.DataAccess;
 using MusicStore.Entities.Configurations;
 using MusicStore.Services;
 using System.Text;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+/*
+ * LEVELS
+ * 1. INFORMATION
+ * 2. WARNING
+ * 3. ERROR
+ * 4. FATAL
+ */
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes
+    .CreateLogger();
+
+builder.Host.ConfigureLogging(options =>
+{
+    //options.ClearProviders();
+    options.AddSerilog(logger);
+});
+
+logger.Information("Hola soy Serilog");
 
 builder.Services.Configure<AppSettings>(builder.Configuration);
 

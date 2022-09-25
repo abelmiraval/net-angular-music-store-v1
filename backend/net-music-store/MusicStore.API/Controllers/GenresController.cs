@@ -11,10 +11,12 @@ namespace MusicStore.API.Controllers
     public class GenresController : ControllerBase
     {
         private readonly IGenreService _service;
+        private readonly ILogger<GenresController> _logger;
 
-        public GenresController(IGenreService service)
+        public GenresController(IGenreService service, ILogger<GenresController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -22,6 +24,10 @@ namespace MusicStore.API.Controllers
         public async Task<IActionResult> Get(string? filter)
         {
             var response = await _service.ListAsync(filter);
+
+            _logger.LogInformation("Habian {Count} registros en la coleccion", response.ResponseResult.Count);
+            _logger.LogCritical("Objeto Response {@response}", response);
+
             return Ok(response);
         }
 
