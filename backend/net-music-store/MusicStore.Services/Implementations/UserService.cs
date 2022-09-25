@@ -97,62 +97,66 @@ public class UserService : IUserService
     {
         var response = new DtoLoginResponse();
 
-        var identity = await _userManager.FindByEmailAsync(request.Email);
+        try
+        {
+            var identity = await _userManager.FindByEmailAsync(request.Email);
 
-        if (identity == null)
+            if (identity == null)
+            {
+                throw new ApplicationException(Constants.UserDoesntExists);
+            }
+
+            if (!await _userManager.CheckPasswordAsync(identity, request.Password))
+            {
+                throw new ApplicationException(Constants.InvalidPassword);
+            }
+
+            var expiredDate = DateTime.Now.AddHours(1);
+
+            response.FullName = $"{identity.FirstName} {identity.LastName}";
+
+            var authClaims = new List<Claim>
+            {
+                new(ClaimTypes.Name, response.FullName),
+                new(ClaimTypes.Email, identity.Email),
+                new(ClaimTypes.Sid, identity.Id)
+            };
+
+            var roles = await _userManager.GetRolesAsync(identity);
+
+            response.Roles = new List<string>();
+            foreach (var role in roles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, role));
+                response.Roles.Add(role);
+            }
+
+            // Creamos el token
+
+            var llavesimetrica = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Jwt.SigningKey));
+
+            var credentials = new SigningCredentials(llavesimetrica, SecurityAlgorithms.HmacSha256);
+
+            var header = new JwtHeader(credentials);
+
+            var payload = new JwtPayload(
+                issuer: _options.Value.Jwt.Issuer,
+                audience: _options.Value.Jwt.Audience,
+                claims: authClaims,
+                notBefore: DateTime.Now,
+                expires: expiredDate);
+
+            var token = new JwtSecurityToken(header, payload);
+
+            response.Token = new JwtSecurityTokenHandler().WriteToken(token);
+            response.Success = true;
+        }
+        catch (Exception ex)
         {
             response.Success = false;
-            response.ListErrors.Add(Constants.UserDoesntExists);
-            _logger.LogWarning(Constants.UserDoesntExists);
-            return response;
+            response.ListErrors.Add(ex.Message);
+            _logger.LogCritical(ex, "{message}", ex.Message);
         }
-
-        if (!await _userManager.CheckPasswordAsync(identity, request.Password))
-        {
-            response.ListErrors.Add(Constants.InvalidPassword);
-            _logger.LogWarning(Constants.InvalidPassword);
-            return response;
-        }
-
-        var expiredDate = DateTime.Now.AddHours(1);
-
-        response.FullName = $"{identity.FirstName} {identity.LastName}";
-
-        var authClaims = new List<Claim>
-        {
-            new(ClaimTypes.Name, response.FullName),
-            new(ClaimTypes.Email, identity.Email),
-            new(ClaimTypes.Sid, identity.Id)
-        };
-
-        var roles = await _userManager.GetRolesAsync(identity);
-
-        response.Roles = new List<string>();
-        foreach (var role in roles)
-        {
-            authClaims.Add(new Claim(ClaimTypes.Role, role));
-            response.Roles.Add(role);
-        }
-
-        // Creamos el token
-
-        var llavesimetrica = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Jwt.SigningKey));
-
-        var credentials = new SigningCredentials(llavesimetrica, SecurityAlgorithms.HmacSha256);
-
-        var header = new JwtHeader(credentials);
-
-        var payload = new JwtPayload(
-            issuer: _options.Value.Jwt.Issuer,
-            audience: _options.Value.Jwt.Audience,
-            claims: authClaims,
-            notBefore: DateTime.Now,
-            expires: expiredDate);
-
-        var token = new JwtSecurityToken(header, payload);
-
-        response.Token = new JwtSecurityTokenHandler().WriteToken(token);
-        response.Success = true;
 
         return response;
     }

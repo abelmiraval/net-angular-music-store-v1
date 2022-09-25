@@ -25,7 +25,7 @@ namespace MusicStore.API.Controllers
         {
             var response = await _service.ListAsync(filter);
 
-            _logger.LogInformation("Habian {Count} registros en la coleccion", response.ResponseResult.Count);
+            _logger.LogError("Habian {Count} registros en la coleccion", response.ResponseResult.Count);
             _logger.LogCritical("Objeto Response {@response}", response);
 
             return Ok(response);
