@@ -34,12 +34,7 @@ public class ConcertService : IConcertService
         {
             var tuple = await _repository.GetCollectionAsync(filter, page, rows, fromHome);
             response.ResponseResult = tuple.Collection.ToList();
-            var totalPages = tuple.Total / rows;
-            // residuo de la division
-            if (tuple.Total % rows > 0)
-                totalPages++;
-
-            response.TotalPages = totalPages;
+            response.TotalPages = Utils.GetTotalPages(tuple.Total, rows);
             response.Success = true;
         }
         catch (Exception ex)
