@@ -7,6 +7,10 @@ using MusicStore.DataAccess;
 using MusicStore.Entities.Configurations;
 using MusicStore.Services;
 using System.Text;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using MusicStore.API.HealthChecks;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
@@ -77,6 +81,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHealthChecks()
+    .AddCheck("MusicStoreAPI", _ => HealthCheckResult.Healthy(), new[] { "servicio" })
+    .AddTypeActivatedCheck<DiskHealthCheck>("Almacenamiento", HealthStatus.Healthy, new[] { "servicio" }, builder.Configuration)
+    .AddTypeActivatedCheck<PingHealthCheck>("Google", HealthStatus.Healthy, new[] { "internet" }, "google.com")
+    .AddTypeActivatedCheck<PingHealthCheck>("Azure", HealthStatus.Healthy, new[] { "internet" }, "azure.com")
+    .AddTypeActivatedCheck<PingHealthCheck>("Host desconocido", HealthStatus.Healthy, new[] { "internet" }, "mocosoft.com.pe")
+    .AddDbContextCheck<MusicStoreDbContext>("EF Core", null, new[] { "basedatos" });
+
 var key = Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("Jwt:SigningKey"));
 
 builder.Services.AddAuthorization();
@@ -108,10 +120,34 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHealthChecks("/health", new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+        Predicate = x => x.Tags.Contains("servicio")
+    });
+
+    endpoints.MapHealthChecks("/health/db", new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+        Predicate = x => x.Tags.Contains("basedatos")
+    });
+
+    endpoints.MapHealthChecks("/health/externos", new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+        Predicate = x => x.Tags.Contains("internet")
+    });
+
+
+});
 
 app.MapControllers();
 
