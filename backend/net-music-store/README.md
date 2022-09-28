@@ -80,7 +80,10 @@ dotnet tool update dotnet-ef --global
 
 - Create scritps
 ```
-dotnet ef migrations script -o .\script.sql --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\
+dotnet ef migrations script -o .\database.sql --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\
+```
+```
+dotnet ef migrations script -o ..\Scripts\database.sql --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\ --idempotent
 ```
 
 - Creeate migration
