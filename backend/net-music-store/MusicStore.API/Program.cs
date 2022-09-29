@@ -17,6 +17,8 @@ using Serilog.Sinks.MSSqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var corsConfiguration = "MusicStoreAPI";
+
 /*
  * LEVELS
  * 1. INFORMATION
@@ -40,6 +42,17 @@ builder.Host.ConfigureLogging(options =>
 {
     //options.ClearProviders();
     options.AddSerilog(logger);
+});
+
+builder.Services.AddCors(setup =>
+{
+    setup.AddPolicy(corsConfiguration, x =>
+    {
+        //x.WithOrigins("localhost", "musicstore.azurewebsites.net")
+        x.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 logger.Information("Hola soy Serilog");
@@ -125,6 +138,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// HABLITAMOS EL CORS (EL FRONT-END TE LO AGRADECERA)
+app.UseCors(corsConfiguration);
 
 app.UseEndpoints(endpoints =>
 {
