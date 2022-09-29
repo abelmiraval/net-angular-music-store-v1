@@ -19,12 +19,14 @@ public class DtoConcert
     [Required]
     public string TimeEvent { get; set; }
     public decimal UnitPrice { get; set; }
-
+    
     public string ImageBase64 { get; set; }
 
     public string? FileName { get; set; }
 
-    public string? Place { get; set; }
+    public string Place { get; set; }
     
     public int GenreId { get; set; }
+
+
 }

@@ -81,7 +81,7 @@ public class SaleRepository : ISaleRepository
     {
         return await _context.Set<Sale>()
             .Include(p => p.Concert)
-            .Where(p => p.Concert.GenreId == genreId 
+            .Where(p => p.Concert.GenreId == genreId
             && p.SaleDate >= dateInit && p.SaleDate <= dateEnd)
             .GroupBy(x => x.Concert.Title)
             .Select(p => new ReportSaleInfo

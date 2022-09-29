@@ -26,7 +26,7 @@ namespace MusicStore.Services.Implementations
             {
                 var collection = await _repository.ListAsync(filter);
 
-                response.ResponseResult =  _mapper.Map<ICollection<DtoResponseGenre>>(collection);
+                response.Result = _mapper.Map<ICollection<DtoResponseGenre>>(collection);
                 response.Success = true;
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace MusicStore.Services.Implementations
             {
                 var entity = await _repository.GetByIdAsync(id);
 
-                response.ResponseResult = _mapper.Map<DtoResponseGenre>(entity);
+                response.Result = _mapper.Map<DtoResponseGenre>(entity);
                 response.Success = true;
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace MusicStore.Services.Implementations
             var response = new BaseResponseGeneric<int>();
             try
             {
-                response.ResponseResult =  await _repository.CreateAsync(_mapper.Map<Genre>(request));
+                response.Result = await _repository.CreateAsync(_mapper.Map<Genre>(request));
                 response.Success = true;
             }
             catch (Exception ex)

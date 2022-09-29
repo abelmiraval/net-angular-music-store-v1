@@ -39,7 +39,7 @@ namespace MusicStore.API.Controllers
         {
             var response = await _service.CreateAsync(request);
 
-            return Created($"api/Concerts/{response.ResponseResult}", response);
+            return Created($"api/Concerts/{response.Result}", response);
         }
 
         [HttpPut("{id:int}")]

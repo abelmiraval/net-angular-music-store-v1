@@ -23,7 +23,7 @@ namespace MusicStore.API.Controllers
         {
             var response = await _service.ListAsync(filter);
 
-            //_logger.LogError("Habian {Count} registros en la coleccion", response.ResponseResult.Count);
+            //_logger.LogError("Habian {Count} registros en la coleccion", response.Result.Count);
             //_logger.LogCritical("Objeto Response {@response}", response);
 
             return Ok(response);
@@ -48,7 +48,7 @@ namespace MusicStore.API.Controllers
         {
             var response = await _service.CreateAsync(request);
 
-            return Created($"api/Genres/{response.ResponseResult}", response);
+            return Created($"api/Genres/{response.Result}", response);
         }
 
         [HttpPut("{id:int}")]

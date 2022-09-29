@@ -33,7 +33,7 @@ public class ConcertService : IConcertService
         try
         {
             var tuple = await _repository.GetCollectionAsync(filter, page, rows, fromHome);
-            response.ResponseResult = tuple.Collection.ToList();
+            response.Result = tuple.Collection.ToList();
             response.TotalPages = Utils.GetTotalPages(tuple.Total, rows);
             response.Success = true;
         }
@@ -52,7 +52,7 @@ public class ConcertService : IConcertService
         var response = new BaseResponseGeneric<ICollection<ConcertInfo>>();
         try
         {
-            response.ResponseResult = await _repository.GetCollectionByGenre(genreId);
+            response.Result = await _repository.GetCollectionByGenre(genreId);
             response.Success = true;
         }
         catch (Exception ex)
@@ -70,7 +70,7 @@ public class ConcertService : IConcertService
         var response = new BaseResponseGeneric<ICollection<ConcertMinimalInfo>>();
         try
         {
-            response.ResponseResult = await _repository.GetMinimalCollectionByGenre(genreId);
+            response.Result = await _repository.GetMinimalCollectionByGenre(genreId);
             response.Success = true;
         }
         catch (Exception ex)
@@ -88,7 +88,7 @@ public class ConcertService : IConcertService
         var response = new BaseResponseGeneric<Concert>();
         try
         {
-            response.ResponseResult = await _repository.GetByIdAsync(id) ?? new Concert();
+            response.Result = await _repository.GetByIdAsync(id) ?? new Concert();
             response.Success = true;
         }
         catch (Exception ex)
@@ -113,7 +113,7 @@ public class ConcertService : IConcertService
                 concert.ImageUrl = await _fileUploader.UploadFileAsync(request.ImageBase64, request.FileName);
             }
 
-            response.ResponseResult = await _repository.CreateAsync(concert);
+            response.Result = await _repository.CreateAsync(concert);
 
             response.Success = true;
         }

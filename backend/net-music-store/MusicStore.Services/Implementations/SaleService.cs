@@ -32,9 +32,10 @@ public class SaleService : ISaleService
             sale.SaleDate = DateTime.Now;
             sale.TotalSale = request.Quantity * request.UnitPrice;
             sale.UserId = userId;
-
-            response.ResponseResult = await _repository.CreateAsync(sale);
+            
+            response.Result = await _repository.CreateAsync(sale);
             response.Success = true;
+
         }
         catch (Exception ex)
         {
@@ -49,9 +50,10 @@ public class SaleService : ISaleService
     public async Task<BaseResponseGeneric<DtoSaleInfo>> GetSaleById(int id)
     {
         var response = new BaseResponseGeneric<DtoSaleInfo>();
+
         try
         {
-            response.ResponseResult = _mapper.Map<DtoSaleInfo>(await _repository.GetSaleById(id));
+            response.Result = _mapper.Map<DtoSaleInfo>(await _repository.GetSaleById(id));
 
             response.Success = true;
         }
@@ -77,7 +79,7 @@ public class SaleService : ISaleService
                 string.IsNullOrEmpty(dateInit) ? null : Convert.ToDateTime(dateInit, englishFormat),
                 string.IsNullOrEmpty(dateEnd) ? null : Convert.ToDateTime(dateEnd, englishFormat));
 
-            response.ResponseResult = collection
+            response.Result = collection
                 .Select(p => _mapper.Map<DtoSaleInfo>(p))
                 .ToList();
 
@@ -101,7 +103,7 @@ public class SaleService : ISaleService
         {
             var collection = await _repository.GetSaleByUserId(userId);
 
-            response.ResponseResult = collection
+            response.Result = collection
                 .Select(p => _mapper.Map<DtoSaleInfo>(p))
                 .ToList();
 
@@ -115,15 +117,15 @@ public class SaleService : ISaleService
         }
         
         return response;
-    }
+    } 
 
-    public async Task<BaseResponseGeneric<ICollection<ReportSaleInfo>>> GetReportSale(int genreId, string? dateInit, string? dateEnd)
+    public async Task<BaseResponseGeneric<ICollection<ReportSaleInfo>>> GetReportSale(int genreId, string dateInit, string dateEnd)
     {
         var response = new BaseResponseGeneric<ICollection<ReportSaleInfo>>();
+
         try
         {
-            response.ResponseResult =
-                await _repository.GetReportSale(genreId, Convert.ToDateTime(dateInit), Convert.ToDateTime(dateEnd));
+            response.Result = await _repository.GetReportSale(genreId, Convert.ToDateTime(dateInit), Convert.ToDateTime(dateEnd));
             response.Success = true;
         }
         catch (Exception ex)

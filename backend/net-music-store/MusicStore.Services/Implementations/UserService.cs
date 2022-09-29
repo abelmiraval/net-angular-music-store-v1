@@ -78,7 +78,7 @@ public class UserService : IUserService
                     await _userManager.AddToRoleAsync(userIdentity, Constants.RoleCustomer);
                 }
 
-                response.ResponseResult = userIdentity.Id;
+                response.Result = userIdentity.Id;
             }
 
             response.Success = result.Succeeded;
@@ -180,7 +180,7 @@ public class UserService : IUserService
 
             // AQUI PONEMOS EL CODIGO QUE ENVIA EL CORREO.
 
-            response.ResponseResult = token;
+            response.Result = token;
             response.Success = true;
 
         }
@@ -211,9 +211,9 @@ public class UserService : IUserService
 
             var identity = await _userManager.ResetPasswordAsync(userIdentity, request.Token, request.Password);
 
-            //AQUI VA EL CORREO CON EL MENSAJE DEL CAMBIO EXITOSO DE LA CONTRASEÑA
+            // AQUI VA EL CORREO CON EL MENSAJE DEL CAMBIO EXITOSO DE LA CONTRASEÑA
 
-            response.ResponseResult = userIdentity.Email;
+            response.Result = userIdentity.Email;
             response.Success = identity.Succeeded;
             response.ListErrors = identity.Errors
                 .Select(p => p.Description)

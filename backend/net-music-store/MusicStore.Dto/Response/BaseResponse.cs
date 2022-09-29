@@ -14,8 +14,7 @@
 
     public class BaseResponseGeneric<TClass> : BaseResponse
     {
-        public TClass ResponseResult { get; set; }
-
+        public TClass Result { get; set; }
     }
 
     public class BaseCollectionResponse<TClass> : BaseResponseGeneric<TClass>

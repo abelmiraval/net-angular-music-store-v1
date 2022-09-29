@@ -25,9 +25,9 @@ public class HomeController : ControllerBase
         var concerts = await _concertService.GetAsync(null, 1, 100, true);
         var response = new
         {
-            Genres = genres.ResponseResult,
-            Concerts = concerts.ResponseResult,
-            Succcess = true
+            Genres = genres.Result,
+            Concerts = concerts.Result,
+            Success = true
         };
 
         return Ok(response);
