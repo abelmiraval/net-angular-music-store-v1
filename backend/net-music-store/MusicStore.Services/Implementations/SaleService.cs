@@ -117,8 +117,22 @@ public class SaleService : ISaleService
         return response;
     }
 
-    public Task<BaseResponseGeneric<ICollection<ReportSaleInfo>>> GetReportSale(int genreId, string? dateInit, string? dateEnd)
+    public async Task<BaseResponseGeneric<ICollection<ReportSaleInfo>>> GetReportSale(int genreId, string? dateInit, string? dateEnd)
     {
-        throw new NotImplementedException();
+        var response = new BaseResponseGeneric<ICollection<ReportSaleInfo>>();
+        try
+        {
+            response.ResponseResult =
+                await _repository.GetReportSale(genreId, Convert.ToDateTime(dateInit), Convert.ToDateTime(dateEnd));
+            response.Success = true;
+        }
+        catch (Exception ex)
+        {
+            response.ListErrors.Add(ex.Message);
+            response.Success = false;
+            _logger.LogCritical(ex.Message);
+        }
+
+        return response;
     }
 }
