@@ -27,22 +27,30 @@ var corsConfiguration = "MusicStoreAPI";
  * 4. FATAL
  */
 
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes
-    .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"), new MSSqlServerSinkOptions
-    {
-        AutoCreateSqlTable = true,
-        TableName = "ApiLogs"
-    }, restrictedToMinimumLevel: LogEventLevel.Warning)
-    .CreateLogger();
-
-builder.Host.ConfigureLogging(options =>
+if (builder.Environment.IsDevelopment())
 {
-    //options.ClearProviders();
-    options.AddSerilog(logger);
-});
+    var logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.FromLogContext()
+        .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes
+        .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"), new MSSqlServerSinkOptions
+        {
+            AutoCreateSqlTable = true,
+            TableName = "ApiLogs"
+        }, restrictedToMinimumLevel: LogEventLevel.Warning)
+        .CreateLogger();
+
+    logger.Information("Hola soy Serilog");
+
+    builder.Host.ConfigureLogging(options =>
+    {
+        //options.ClearProviders();
+        options.AddSerilog(logger);
+    });
+}
+
+
+
 
 builder.Services.AddCors(setup =>
 {
@@ -55,7 +63,6 @@ builder.Services.AddCors(setup =>
     });
 });
 
-logger.Information("Hola soy Serilog");
 
 builder.Services.Configure<AppSettings>(builder.Configuration);
 
@@ -127,11 +134,11 @@ builder.Services.AddAuthentication(x =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseRouting();
 app.UseHttpsRedirection();
