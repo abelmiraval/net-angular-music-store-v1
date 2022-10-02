@@ -46,6 +46,14 @@ dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection --version
 dotnet restore
 ```
 
+- Publish in linux
+```
+dotnet publish --configuration Release -o ~/publish/ --self-contained --runtime linux-x64
+```
+```
+dotnet MusicStore.API.dll
+```
+
 ## Package Manager Console
 
 - Add migration
@@ -84,6 +92,9 @@ dotnet ef migrations script -o .\database.sql --project .\MusicStore.DataAccess\
 ```
 ```
 dotnet ef migrations script -o ..\Scripts\database.sql --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\ --idempotent
+```
+```
+dotnet ef migrations bundle --project .\MusicStore.DataAccess\ --startup-project .\MusicStore.API\ --configuration Bundle
 ```
 
 - Creeate migration
