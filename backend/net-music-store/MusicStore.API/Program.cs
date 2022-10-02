@@ -11,6 +11,8 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MusicStore.API.HealthChecks;
+using MusicStore.Services.Implementations;
+using MusicStore.Services.Interfaces;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
@@ -67,7 +69,13 @@ builder.Services.AddCors(setup =>
 builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.AddAutoMapper(options => options.AddProfile<AutoMapperProfiles>());
-builder.Services.AddDependencies();
+
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddTransient<IFileUploader, FileUploader>();
+else
+    builder.Services.AddTransient<IFileUploader, AzureBlobStorageUploader>();
+
+    builder.Services.AddDependencies();
 
 // Add services to the container.
 builder.Services.AddDbContext<MusicStoreDbContext>(options =>
