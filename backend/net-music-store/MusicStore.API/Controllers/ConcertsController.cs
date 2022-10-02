@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
 using MusicStore.Entities;
@@ -8,6 +9,7 @@ namespace MusicStore.API.Controllers
 {
     [Route(Constants.DefaultRoute)]
     [ApiController]
+    [Authorize]
     public class ConcertsController : ControllerBase
     {
         private readonly IConcertService _service;

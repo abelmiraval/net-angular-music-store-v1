@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicStore.Dto.Request;
 using MusicStore.Dto.Response;
 using MusicStore.Entities;
@@ -8,6 +9,7 @@ namespace MusicStore.API.Controllers
 {
     [ApiController]
     [Route(Constants.DefaultRoute)]
+    [Authorize]
     public class GenresController : ControllerBase
     {
         private readonly IGenreService _service;
@@ -17,6 +19,7 @@ namespace MusicStore.API.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 200)]
         public async Task<IActionResult> Get(string? filter)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicStore.Entities;
 using MusicStore.Services.Interfaces;
 
@@ -6,6 +7,7 @@ namespace MusicStore.API.Controllers;
 
 [ApiController]
 [Route($"{Constants.DefaultRoute}/[action]")]
+[Authorize]
 public class ReportController : Controller
 {
     private readonly ISaleService _service;
