@@ -10,13 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Entities", "MusicStore.Entities\MusicStore.Entities.csproj", "{4EC68E3A-C645-4872-A63B-85A64CC0E215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Entities", "MusicStore.Entities\MusicStore.Entities.csproj", "{4EC68E3A-C645-4872-A63B-85A64CC0E215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.DataAccess", "MusicStore.DataAccess\MusicStore.DataAccess.csproj", "{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.DataAccess", "MusicStore.DataAccess\MusicStore.DataAccess.csproj", "{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Services", "MusicStore.Services\MusicStore.Services.csproj", "{862BB7A8-FCD0-457F-9F19-046560F0BCD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Services", "MusicStore.Services\MusicStore.Services.csproj", "{862BB7A8-FCD0-457F-9F19-046560F0BCD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Dto", "MusicStore.Dto\MusicStore.Dto.csproj", "{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.Dto", "MusicStore.Dto\MusicStore.Dto.csproj", "{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Entidades", "01. Entidades", "{D5DAF038-84EB-4C62-9F89-A76F8D3842B9}"
 EndProject
@@ -30,28 +30,39 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{D50197FA-B9C6-47DE-B31D-1DE1FAA25D1D}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{4EC68E3A-C645-4872-A63B-85A64CC0E215}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{43DC8F80-C05C-4AE8-AEF9-25A35662A6A5}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{862BB7A8-FCD0-457F-9F19-046560F0BCD9}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{DF6E2A01-7084-494A-8F3C-0D0B57C4271C}.Staging|Any CPU.Build.0 = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
