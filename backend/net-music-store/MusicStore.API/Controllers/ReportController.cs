@@ -16,8 +16,8 @@ public class ReportController : Controller
     {
         _service = service;
     }
-
-    //GET
+    
+    // GET
     [HttpGet]
     public async Task<IActionResult> Sales(int genreId, string dateInit, string dateEnd)
     {

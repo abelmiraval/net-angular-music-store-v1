@@ -21,12 +21,12 @@ namespace MusicStore.API.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [ProducesResponseType(typeof(BaseResponseGeneric<Genre>), 200)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<ICollection<Genre>>), 200)]
         public async Task<IActionResult> Get(string? filter)
         {
-            var response = await _service.ListAsync(filter);
-
-            //_logger.LogError("Habian {Count} registros en la coleccion", response.Result.Count);
+            var response =  await _service.ListAsync(filter);
+            
+            //_logger.LogInformation("Habian {Count} registros en la coleccion", response.Result.Count);
             //_logger.LogCritical("Objeto Response {@response}", response);
 
             return Ok(response);

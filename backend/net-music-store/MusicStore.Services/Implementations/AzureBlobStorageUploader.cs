@@ -27,11 +27,11 @@ public class AzureBlobStorageUploader : IFileUploader
 
             var container = client.GetBlobContainerClient("pictures");
 
-            var bobClient = container.GetBlobClient(filePath);
+            var blobClient = container.GetBlobClient(filePath);
 
             using (var mem = new MemoryStream(Convert.FromBase64String(base64String)))
             {
-                await bobClient.UploadAsync(mem, true);
+                await blobClient.UploadAsync(mem, true);
 
                 return $"{_options.Value.StorageConfiguration.PublicUrl}{filePath}";
             }

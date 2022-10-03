@@ -20,7 +20,7 @@ namespace MusicStore.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ICollection<DtoResponseConcert>), 200)]
+        [ProducesResponseType(typeof(BaseResponseGeneric<ICollection<DtoResponseConcert>>), 200)]
         public async Task<IActionResult> Get(string? filter, int page = 1, int rows = 10)
         {
             return Ok(await _service.GetAsync(filter, page, rows, false));

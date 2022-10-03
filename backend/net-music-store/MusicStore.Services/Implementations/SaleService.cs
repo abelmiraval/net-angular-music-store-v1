@@ -117,7 +117,7 @@ public class SaleService : ISaleService
         }
         
         return response;
-    } 
+    }
 
     public async Task<BaseResponseGeneric<ICollection<ReportSaleInfo>>> GetReportSale(int genreId, string dateInit, string dateEnd)
     {

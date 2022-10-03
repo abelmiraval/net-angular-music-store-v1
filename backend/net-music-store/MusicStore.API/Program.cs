@@ -34,12 +34,13 @@ if (builder.Environment.IsDevelopment())
     var logger = new LoggerConfiguration()
         .ReadFrom.Configuration(builder.Configuration)
         .Enrich.FromLogContext()
-        .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes
-        .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"), new MSSqlServerSinkOptions
-        {
-            AutoCreateSqlTable = true,
-            TableName = "ApiLogs"
-        }, restrictedToMinimumLevel: LogEventLevel.Warning)
+        .WriteTo.Console() // Sink es el destino de donde se guardan los mensajes.
+        .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MusicStoreDB"),
+            new MSSqlServerSinkOptions
+            {
+                AutoCreateSqlTable = true,
+                TableName = "ApiLogs"
+            }, restrictedToMinimumLevel: LogEventLevel.Warning)
         .CreateLogger();
 
     logger.Information("Hola soy Serilog");
@@ -50,9 +51,6 @@ if (builder.Environment.IsDevelopment())
         options.AddSerilog(logger);
     });
 }
-
-
-
 
 builder.Services.AddCors(setup =>
 {
@@ -65,7 +63,6 @@ builder.Services.AddCors(setup =>
     });
 });
 
-
 builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.AddAutoMapper(options => options.AddProfile<AutoMapperProfiles>());
@@ -75,7 +72,7 @@ if (builder.Environment.IsDevelopment())
 else
     builder.Services.AddTransient<IFileUploader, AzureBlobStorageUploader>();
 
-    builder.Services.AddDependencies();
+builder.Services.AddDependencies();
 
 // Add services to the container.
 builder.Services.AddDbContext<MusicStoreDbContext>(options =>
@@ -154,7 +151,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// HABLITAMOS EL CORS (EL FRONT-END TE LO AGRADECERA)
+// HABILITAMOS EL CORS (EL FRONT-END TE LO AGRADECERA)
 app.UseCors(corsConfiguration);
 
 app.UseEndpoints(endpoints =>
