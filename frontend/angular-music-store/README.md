@@ -1,6 +1,6 @@
 ## Installer
 
--VS Code
+- VS Code
 ```
 https://code.visualstudio.com
 ```
@@ -70,4 +70,14 @@ ng build --configuration quality | ng b --c quality
 - Angular material
 ```
 ng add @angular/material
+```
+
+- ESLint
+```
+ng add @angular-eslint/schematics
+```
+
+- Prettier
+```
+npm install -D prettier eslint-config-prettier eslint-plugin-prettier
 ```
