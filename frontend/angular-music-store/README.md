@@ -64,3 +64,10 @@ ng build --configuration <name-enviroment> | ng b --c <name-enviroment>
 ```
 ng build --configuration quality | ng b --c quality
 ```
+
+## Dependencies
+
+- Angular material
+```
+ng add @angular/material
+```
