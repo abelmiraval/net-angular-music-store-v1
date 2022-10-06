@@ -1,7 +1,8 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+    "projects/**/*",
+    "src/app/**/*.spec.ts"
   ],
   "overrides": [
     {
@@ -34,7 +35,17 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "error"
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off"
       }
     },
     {
@@ -42,7 +53,8 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended"
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:prettier/recommended"
       ],
       "rules": {}
     }
