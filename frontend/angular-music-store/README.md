@@ -23,6 +23,9 @@ npm install -g @angular/cli
 https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3
 ```
 
+# Extensions
+- Angular Snippets
+
 # Commands
 
 - Create project
