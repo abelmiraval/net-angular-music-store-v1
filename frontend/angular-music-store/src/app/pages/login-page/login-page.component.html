@@ -1,0 +1,30 @@
+<div class="root flex-column">
+	<h2>Compra tus entradas y disfruta!</h2>
+	<div class="container">
+		<mat-card class="container__card custom-card flex-column">
+			<h4>INICIO DE SESIÓN</h4>
+
+			<form class="content flex-column" autocomplete="off">
+				<mat-form-field appearance="outline">
+					<mat-label>E-mail</mat-label>
+					<input matInput type="email" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Contraseña</mat-label>
+					<input matInput type="password" />
+				</mat-form-field>
+
+				<div class="content__login flex-column">
+					<span routerLink="/recovery">¿Olvidaste tu contraseña?</span>
+					<button mat-raised-button color="primary" type="button" routerLink="/maintenance">INGRESAR</button>
+				</div>
+
+				<div class="content__register">
+					<span>Si no tienes una cuenta</span>
+					<a routerLink="/register">regístrate</a>
+				</div>
+			</form>
+		</mat-card>
+	</div>
+</div>
