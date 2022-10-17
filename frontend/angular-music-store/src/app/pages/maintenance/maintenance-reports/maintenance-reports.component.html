@@ -1,0 +1,33 @@
+<div>
+	<h2>REPORTES / VENTAS</h2>
+	<div class="flex-column content">
+		<div class="content__filter">
+			<mat-form-field appearance="outline">
+				<mat-label>Género</mat-label>
+				<mat-select>
+					<mat-option>Rock</mat-option>
+					<mat-option>Salsa</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Fecha de inicio</mat-label>
+				<input matInput [matDatepicker]="pickerInit" />
+				<mat-datepicker-toggle matSuffix [for]="pickerInit"></mat-datepicker-toggle>
+				<mat-datepicker #pickerInit></mat-datepicker>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Fecha fin</mat-label>
+				<input matInput [matDatepicker]="pickerFin" />
+				<mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+				<mat-datepicker #pickerFin></mat-datepicker>
+			</mat-form-field>
+		</div>
+
+		<div>
+			<button mat-raised-button color="primary" class="content__query">CONSULTAR</button>
+			<button mat-raised-button color="accent">LIMPIAR</button>
+		</div>
+	</div>
+</div>

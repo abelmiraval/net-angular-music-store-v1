@@ -1,0 +1,14 @@
+@use '../../../commons/styles/colors.scss';
+.content {
+	padding: 2em;
+	background-color: colors.$secondary-color;
+	gap: 1em;
+
+	&__filter {
+		display: flex;
+		gap: 2em;
+		> * {
+			width: 100%;
+		}
+	}
+}
