@@ -1,0 +1,60 @@
+<div class="root flex-column">
+	<h2>Regístrate, ingresa tus datos</h2>
+	<div class="container">
+		<mat-card class="container__card custom-card flex-column">
+			<h4>REGISTRO</h4>
+
+			<form class="content flex-column" autocomplete="off">
+				<mat-form-field appearance="outline">
+					<mat-label>Nombres</mat-label>
+					<input matInput type="text" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Apellidos</mat-label>
+					<input matInput type="text" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>E-mail</mat-label>
+					<input matInput type="email" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Edad</mat-label>
+					<input matInput type="number" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Contraseña</mat-label>
+					<input matInput type="password" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Repetir contraseña</mat-label>
+					<input matInput type="password" />
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Documento</mat-label>
+					<mat-select>
+						<mat-option> DNI </mat-option>
+						<mat-option> C.E </mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field appearance="outline">
+					<mat-label>Nro Documento</mat-label>
+					<input matInput type="text" />
+				</mat-form-field>
+
+				<button mat-raised-button color="primary">REGISTRARSE</button>
+
+				<div class="content__register">
+					<span>Si ya tienes una cuenta </span>
+					<a routerLink="/login">ingresa</a>
+				</div>
+			</form>
+		</mat-card>
+	</div>
+</div>
