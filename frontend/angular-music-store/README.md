@@ -84,3 +84,13 @@ ng add @angular-eslint/schematics
 ```
 npm install -D prettier eslint-config-prettier eslint-plugin-prettier
 ```
+
+## Setting Husky
+```
+npx husky-init && npm install
+```
+- In the folder .husky, add next line.
+
+```
+npm run pre-commit
+```
